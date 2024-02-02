@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<views>
+  <view name="QC_Long_MS1area_idotp" rowsource="pwiz.Skyline.Model.Databinding.Entities.Precursor" sublist="Results!*" uimode="proteomic">
+    <column name="Peptide.Protein.Name" />
+    <column name="Peptide.ModifiedSequence" />
+    <column name="Results!*.Value.PeptideResult.ResultFile.FileName" />
+    <column name="Results!*.Value.IsotopeDotProduct" />
+    <column name="Results!*.Value.TotalAreaMs1" />
+  </view>
+</views>

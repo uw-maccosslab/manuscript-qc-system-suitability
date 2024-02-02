@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<views>
+  <view name="QC_Long_TAF" rowsource="pwiz.Skyline.Model.Databinding.Entities.Precursor" sublist="Results!*" uimode="proteomic">
+    <column name="Peptide.Protein.Name" />
+    <column name="Results!*.Value.TotalAreaFragment" />
+    <column name="Peptide.Sequence" />
+    <column name="Results!*.Value.PeptideResult.ResultFile.FileName" />
+  </view>
+</views>

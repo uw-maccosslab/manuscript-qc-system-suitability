@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<views>
+  <view name="QC_Replicates_Fig6" rowsource="pwiz.Skyline.Model.Databinding.Entities.Replicate" sublist="Files!*" uimode="proteomic">
+    <column name="" />
+    <column name="Files!*.FileName" />
+    <column name="Files!*.AcquiredTime" />
+    <column name="&quot;annotation_Group&quot;" />
+    <column name="&quot;annotation_SampleGroup&quot;" />
+    <column name="&quot;annotation_ForFigure&quot;" />
+  </view>
+</views>

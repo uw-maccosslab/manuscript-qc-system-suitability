@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<views>
+  <view name="QC_PeakArea_RetTime_Chromatogram" rowsource="pwiz.Skyline.Model.Databinding.Entities.Transition" sublist="Results!*" uimode="proteomic">
+    <column name="Results!*.Value.PrecursorResult.PeptideResult.ResultFile.Replicate.Name" />
+    <column name="Results!*.Value.PrecursorResult.PeptideResult.ResultFile.Replicate.&quot;annotation_Group&quot;" />
+    <column name="Precursor.Peptide.Protein" />
+    <column name="Precursor.Peptide.ModifiedSequence" />
+    <column name="FragmentIon" />
+    <column name="" />
+    <column name="Precursor" />
+    <column name="ProductMz" />
+    <column name="ProductCharge" />
+    <column name="Note" />
+    <column name="Results!*.Value.PrecursorResult.TotalAreaFragment" />
+    <column name="Results!*.Value.Area" />
+    <column name="Precursor.Peptide.AverageMeasuredRetentionTime" />
+    <column name="Results!*.Value.PrecursorResult.BestRetentionTime" />
+    <column name="Results!*.Value.PrecursorResult.MinStartTime" />
+    <column name="Results!*.Value.PrecursorResult.MaxEndTime" />
+    <column name="Results!*.Value.PrecursorResult.MaxFwhm" />
+    <column name="Results!*.Value.Chromatogram.RawData.Times" />
+    <column name="Results!*.Value.Chromatogram.RawData.Intensities" />
+    <column name="Results!*.Value.Chromatogram.InterpolatedData.Times" />
+    <column name="Results!*.Value.Chromatogram.InterpolatedData.Intensities" />
+  </view>
+</views>
