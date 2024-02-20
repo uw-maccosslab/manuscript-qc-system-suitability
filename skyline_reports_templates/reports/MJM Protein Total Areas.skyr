@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<views>
+  <view name="MJM Protein Total Areas" rowsource="pwiz.Skyline.Model.Databinding.Entities.Peptide" sublist="Results!*" uimode="proteomic">
+    <column name="" />
+    <column name="Protein" />
+    <column name="Results!*.Value.ResultFile.Replicate" />
+    <column name="Protein.Description" />
+    <column name="Protein.Gene" />
+    <column name="Results!*.Value.Quantification.NormalizedArea" />
+  </view>
+  <layouts viewName="MJM Protein Total Areas" defaultLayout="Sum of Peptide Areas">
+    <layout name="Sum of Peptide Areas">
+      <pivot>
+        <rowHeader sourceColumn="Protein" />
+        <rowHeader sourceColumn="ProteinDescription" />
+        <rowHeader sourceColumn="ProteinGene" />
+        <columnHeader sourceColumn="Replicate" />
+        <value sourceColumn="NormalizedArea" op="Sum" />
+      </pivot>
+    </layout>
+  </layouts>
+</views>

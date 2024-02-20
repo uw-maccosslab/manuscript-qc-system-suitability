@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<views>
+  <view name="DIAPeptideTotalAreaFragmentPivot" rowsource="pwiz.Skyline.Model.Databinding.Entities.Precursor" sublist="" uimode="proteomic">
+    <column name="Peptide" />
+    <column name="Peptide.ModifiedSequence" />
+    <column name="Peptide.Protein" />
+    <column name="Results!*.Value.TotalAreaFragment" />
+  </view>
+  <layouts viewName="DIAPeptideTotalAreaFragmentPivot">
+    <layout name="pivot-rep" />
+  </layouts>
+</views>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<views>
+  <view name="TPAD CSF SP3 Metadata" rowsource="pwiz.Skyline.Model.Databinding.Entities.Replicate" sublist="Files!*" uimode="proteomic">
+    <column name="" />
+    <column name="&quot;annotation_Linkcode&quot;" />
+    <column name="&quot;annotation_Plate&quot;" />
+    <column name="&quot;annotation_Well Position&quot;" />
+    <column name="&quot;annotation_Diagnosis&quot;" />
+    <column name="&quot;annotation_Condition&quot;" />
+    <column name="&quot;annotation_Condition Number&quot;" />
+    <column name="&quot;annotation_Age&quot;" />
+    <column name="&quot;annotation_isMale&quot;" />
+    <column name="&quot;annotation_Sex&quot;" />
+    <column name="&quot;annotation_Cutpoint&quot;" />
+    <column name="&quot;annotation_ptau181 (pg/ml)&quot;" />
+    <column name="&quot;annotation_Ttau (pg/ml)&quot;" />
+    <column name="&quot;annotation_AB42/AB40&quot;" />
+    <column name="&quot;annotation_AB42 (pg/ml)&quot;" />
+    <column name="&quot;annotation_Abeta40&quot;" />
+    <column name="&quot;annotation_Y1 Consensus&quot;" />
+    <column name="&quot;annotation_Y2 Consensus&quot;" />
+    <column name="&quot;annotation_Y3 Consensus&quot;" />
+    <column name="&quot;annotation_Y4 Consensus&quot;" />
+  </view>
+</views>
