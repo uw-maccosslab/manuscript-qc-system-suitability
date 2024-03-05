@@ -7,8 +7,6 @@ Data was processed manually or with Nextflow workflows using Skyline and Limelig
 
 **Please note this initial commit will be edited later (likely multiple times) with:**
 
-* Second script
-
 * Updated manuscript title
 
 * Updated bioRxiv DOI
@@ -22,6 +20,8 @@ $~$
 ## Repository Layout
 
 * **bin:** Contains scripts used to generate figures
+
+* **figs:** Contains copies of figures
 
 * **input:** Contains files used as input for the scripts in the bin folder
 
@@ -55,10 +55,16 @@ Scripts are located in the **bin** folder.
   - Figure 6
   - Supplementary Figure 1
 
-* **___JEA_SCRIPT___.r:** R script that is used to generate the following figures:
+* **bin/data** subfolder contains scripts needed to process data to generate Figure 7 using two additional scripts found in **figs** subfolder
 
-  - Figure 7
+  - functions.r
+  - interim_dat.r
+  - processed_dat.r
 
+* **bin/figs** subfolder contrains scripts used to generate figure 7
+
+  - **plot_7a.r:** R script that is used to generate the Figure 7A
+  - **plot_7b.r:** R script that is used to generate the following Figure 7B and 7C
 
 $~$
 
@@ -117,12 +123,29 @@ Input files for scripts are located in the **input** folder. All of the files up
 * Figure5_PRM_PeakArea_RetTime_Chromatogram_Export
 
 
-### ___JEA_SCRIPT___.r input files
+### functions.r input files
 
-#### ***Skyline Document:*** ___FIG7___.sky.zip
+* None. Contains functions used in **interim_dat.r**, **processed_dat.r**, **plot_7a.r**, and **plot_7b.**r
 
-* **fig7_input1.csv:** Description of input file (Figure 7_).
-* **fig7_input2.csv:** Description of input file (Figure 7_).
+
+### interim_dat.r input files
+
+* **Figure7_DIAPeptideTotalAreaFragmentPivot.csv.csv:** Total area fragment values extracted using Skyline (Figure 7A,7B, and 7C).
+
+* **Figure7_TPAD_CSF_meta-12-13-2022.csv.csv:** Metadata exported from Skyline (Figure 7A,7B, and 7C).
+
+
+### processed_dat.r input files
+
+* **int.rdata:** Input file of log2 transformed data. Also written to .csv file "tpad-csf_sp3-1_5-log2_raw-v230512.csv"
+
+
+### plot_7a.r and plot_7b.r input files
+
+* **int.rdata:** Input file of log2 transformed data.
+  
+* **proc.rdata:** Input file of processed data and metadata generated in processed_dat.r
+
 
 
 $~$
@@ -172,7 +195,7 @@ Panels generated in "maccoss_qc_figures_3_4_5_6_S1.Rmd".
   - **6B:** Total Area Fragment of 8 individual PRTC peptides in system suitability and sample runs across 4 batches.
 
 * **Figure 7:**
-Panels generated in "___JEA_SCRIPT___.r".
+Panels generated in "plot_7a.r" and "plot_7b.r".
   - **7A:** Assessing the effect of median normalization and batch correction on peptide and protein CVs in the inter-batch external QC samples within each batch.
   - **7B:** Plotting the CV vs Log2(Median Abundance) across all batches to assess the effects of normalization and batch correction on peptide and protein CVs in the inter-batch external QC samples.
   - **7C:** Plotting Frequency distribution of the protein and peptide CVs across all batches to assess the effects of normalization and batch correction on peptide and protein CVs in the inter-batch external QC samples.
