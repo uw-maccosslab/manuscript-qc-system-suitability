@@ -1,18 +1,8 @@
 # MacCoss Lab QC for sample preparation, system suitability, and quantitative results.
 
-This repository contains most of the input files and the analyses described in the manuscript **"Moving beyond protein and peptide identifications: A holistic approach to quality control in bottom-up proteomics experiments spanning sample preparation, system suitability, and quantitative analyses"**, which is currently located on bioRxiv under the DOI (TBD). Any files not located here are freely and openly accessible on this [public Panorama page](https://panoramaweb.org/MacCoss/Tsantilas_Public/20240214_QC_Companion_Page/project-begin.view).
+This repository contains most of the input files and the analyses described in the manuscript **"Holistic quality control for bottom-up quantitative proteomics"**, which is currently located on bioRxiv under the DOI (TBD). Any files not located here are freely and openly accessible on this [public Panorama page](https://panoramaweb.org/MacCoss/Tsantilas_Public/20240214_QC_Companion_Page/project-begin.view).
 
-Data was processed manually or with Nextflow workflows using Skyline and Limelight. The results were exported using the Skyline document grid or from Limelight. Downstream analyses and figure generation were perfomed using Skyline, Panorama, R scripts, and Inkscape.
-
-
-**Please note this initial commit will be edited later (likely multiple times) with:**
-
-* Updated manuscript title
-
-* Updated bioRxiv DOI
-
-* Updated panorama link which will have all raw data files accessible
-
+Data was processed manually or with Nextflow workflows using Skyline and Limelight. The results were exported using the Skyline document grid or from Limelight. Downstream analysis and figure generation were perfomed using Skyline, Panorama, R scripts, and Inkscape.
 
 $~$
 
@@ -36,7 +26,7 @@ $~$
 
 * **Temporary data deposition:** [Public Panorama project containing large script input files](https://panoramaweb.org/MacCoss/Tsantilas_Public/20240214_QC_Companion_Page/project-begin.view)
 
-* **Panorama Public:** In progress
+* **Panorama Public:** In progress. Public repository of all raw files, processed data, and input files for the scripts deposited in this GitHub repository.
 
 * **Limelight Project:** [MacCoss QC Paper 2024 - Project 131](https://limelight.yeastrc.org/limelight/d/pg/project/131)
 
@@ -108,13 +98,10 @@ Input files for scripts are located in the **input** folder. All of the files up
 * **Figure3_DDA_Limelight_PSMs.txt:** Peptides and PSMs identified using Comet and Percolator.
 
 #### ***Additional input files:*** 
-* **Figure3_timeline_format.csv:** Organizer .csv to set-up and label the maintenance timeline in Figure 3A.
 * **Figure6_timeline_format.csv:** Organizer .csv to set-up and label the maintenance timeline in Figure 6A.
 * **Figure6_Run_Organizer.csv:** Organizer .csv to set-up and label Figure 6B.
 
 #### ***Please note some Input files are only located on Panorama:*** [Public Panorama project](https://panoramaweb.org/MacCoss/Tsantilas_Public/20240214_QC_Companion_Page/project-begin.view) that contains script input files that are larger than 25 MB.
-
-* Figure3_PRM_PeakArea_RetTime_Chromatogram_Export.csv
 
 * Figure4_DIA_PeakArea_RetTime_Chromatogram_Export
 
