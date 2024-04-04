@@ -1,7 +1,7 @@
 ---
 title: "Figures 3, 4, 5, 6, and S1 from MacCoss QC manuscript"
 author: "Kristine A. Tsantilas, PhD"
-date: '2024-02-14'
+date: '2024-04-04'
 output: 
   html_document:
       code_folding: hide
@@ -61,10 +61,7 @@ The necessary input files by figure are listed below:
 * **Limelight Project 131** 
 
   - **Figure3_DDA_Limelight_PSMs.txt:** Organizer .csv to set-up and label Figure 6A.
-  
-* **Other input files**
 
-  - **Figure3_timeline_format.csv:** Organizer .csv to  set-up and label Figure 3A.
 
 
 #### Figure 4
@@ -190,7 +187,21 @@ sessionInfo()
 
 ```
 
+```{r setup_folders}
+
+directories <- c('output', 'output/figures')
+
+for(c in directories){
+  if(!dir.exists(c)){
+    message(paste('Creating directory: ', c))
+    dir.create(c)
+  }}
+
+```
+
+
 ```{r filename_labels, results='hide'}
+
 # Check location of working directory
 getwd()
 
@@ -656,9 +667,19 @@ Generating a ggplot object of a timeline of significant maintenance.
 
 $~$
 
-```{r fig3a_plot, fig.dim = c(20,2.441), fig.show='hide', results = "hold", collapse = TRUE, warning = FALSE, message = FALSE}
+```{r}
+# Setting-up dataframe to plot timeline of maintenance and data in figure 3
+fig3_timeline <- data.frame("Position_x" = c(-225, -200, -75, -50, 75, 100, 115, 285), 
+                            "Position_y" = c(45, 5, 45, 5, 55, 35, 5, 5),
+                            "Orientation"= c(1, -1, 1, -1, 1, 1, -1, -1),
+                            "Note"= c("New RF coil, LIT, software", "12/2014", "Cleaned optics",  
+                                      "04/2015", "Cleaned optics, isolation quad", "Cleaned optics, q0",
+                                      "02/2016", "03/2016"))
 
-fig3_timeline <- read.csv("input/Figure3_timeline_format.csv")
+```
+
+
+```{r fig3a_plot, fig.dim = c(20,2.441), fig.show='hide', results = "hold", collapse = TRUE, warning = FALSE, message = FALSE}
 
 ## Plotting rough maintenance timeline to correspond with the data in 3B-G
 figure3a <- (ggplot(data = fig3_timeline, aes(x=Position_x, y=Position_y)) +
@@ -937,7 +958,7 @@ $~$
      fig3 <- (figure3a + fig3_prtc_2014_chrom + fig3_prtc_2015_chrom + fig3_prtc_2016_chrom + fig3_prtc_2016_2_chrom + fig3_bsa_2014_chrom + fig3_bsa_2015_chrom + fig3_bsa_2016_chrom + fig3_bsa_2016_2_chrom + fig3_DDA_PSM + fig3_DDA_Peptide + fig3_prtc_taf + fig3_bsa_taf + plot_layout(design = fig3_layout) + plot_annotation(tag_levels = list(c("A", "B",  "", "", "", "C", "", "", "", "D", "E", "F", "G"))) & theme(plot.tag = element_text(size = 28)))
 
 # Export Figure 3 as .svg file
-  ggsave(file = paste("output\\",basename,filenamebase,"Figure3.svg", sep=""), plot=fig3, width= 20, height=17) 
+  ggsave(file = paste("output\\figures\\",basename,filenamebase,"Figure3.svg", sep=""), plot=fig3, width= 20, height=17) 
 
 ```
 
@@ -1418,10 +1439,10 @@ fig4_patch <- fig4_top / figS4_bottom
 fig4 <- fig4_patch + plot_annotation(tag_levels = 'A') & theme(plot.tag = element_text(size = 6))
 
 # Output Figure 4 as a .svg file. 
-ggsave(file = paste("output\\",basename,filenamebase,"Figure4.svg", sep=""), plot=fig4, width=15, height=15) 
+ggsave(file = paste("output\\figures\\",basename,filenamebase,"Figure4.svg", sep=""), plot=fig4, width=15, height=15) 
 
 # Output Figure 4 as a .png file. 
-ggsave(file = paste("output\\",basename,filenamebase,"Figure4.png", sep=""), plot=fig4, width=15, height=15) 
+ggsave(file = paste("output\\figures\\",basename,filenamebase,"Figure4.png", sep=""), plot=fig4, width=15, height=15) 
 
 ```
 
@@ -1526,10 +1547,10 @@ $~$
     figS1 <- (figS1_pep1_top + figS1_pep2_top + figS1_pep1_bottom + figS1_pep2_bottom + figS1_pep3_top + figS1_pep4_top + figS1_pep3_bottom + figS1_pep4_bottom + plot_layout(design = figS1_layout) + plot_annotation(tag_levels = 'A') & theme(plot.tag = element_text(size = 28)))
     
 # Export Supplementary Figure 1 as .svg file
-  ggsave(file = paste("output\\",basename,filenamebase,"FigureS1.svg", sep=""), plot=figS1, width=20, height=30) 
+  ggsave(file = paste("output\\figures\\",basename,filenamebase,"FigureS1.svg", sep=""), plot=figS1, width=20, height=30) 
 
 # Export Supplementary Figure 1 as .png file
-  ggsave(file = paste("output\\",basename,filenamebase,"FigureS1.png", sep=""), plot=figS1, width=20, height=30) 
+  ggsave(file = paste("output\\figures\\",basename,filenamebase,"FigureS1.png", sep=""), plot=figS1, width=20, height=30) 
 
 ```
 
@@ -2091,7 +2112,7 @@ $~$
 
 fig5 <- (fig5_yeno1_intensity + fig5_prtc_intensity + fig5_7_yeno1_combined + fig5_9_yeno1_raw + fig5_7_prtc_combined + fig5_9_prtc_raw + fig5_7_yeno_rt + fig5_7_prtc_rt + plot_layout(design = fig5_layout) + plot_annotation(tag_levels = list(c("A", "B", "C", "", "D", "E", "", "F", "G", "H"))) & theme(plot.tag.position = c(0, 1), plot.tag = element_text(size = 46, face = 'bold')))
 
-  ggsave(file = paste("output\\",basename,filenamebase,"Figure5.svg", sep=""), plot=fig5, width=(25), height=(20))  
+  ggsave(file = paste("output\\figures\\",basename,filenamebase,"Figure5.svg", sep=""), plot=fig5, width=(25), height=(20))  
 
 ##############################################################################################################################
 ##############################################################################################################################
@@ -2431,7 +2452,7 @@ $~$
 
 fig6 <- (figure6a / figure6b + plot_layout(heights = c(1,4)) + plot_annotation(tag_levels = 'A') & theme(plot.tag = element_text(size = 35)))
 
-ggsave(file = paste("output\\",basename,filenamebase,"Figure6.svg", sep=""), plot=fig6, width=22, height=(11+2.441))  
+ggsave(file = paste("output\\figures\\",basename,filenamebase,"Figure6.svg", sep=""), plot=fig6, width=22, height=(11+2.441))  
   
 ```
 
