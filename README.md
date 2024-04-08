@@ -1,6 +1,6 @@
 # MacCoss Lab QC for sample preparation, system suitability, and quantitative results.
 
-This repository contains most of the input files and the analyses described in the manuscript **"Holistic quality control for bottom-up quantitative proteomics"**, which is currently located on bioRxiv under the DOI (TBD). Any files not located here are freely and openly accessible on this [public Panorama page](https://panoramaweb.org/MacCoss/Tsantilas_Public/20240214_QC_Companion_Page/project-begin.view).
+This repository contains most of the input files and the analyses described in the manuscript **"A framework for quality control in quantitative proteomics"**, which is currently located on bioRxiv under the DOI (TBD). Any files not located here are freely and openly accessible on this [public Panorama page](https://panoramaweb.org/MacCoss/Tsantilas_Public/20240214_QC_Companion_Page/project-begin.view).
 
 Data was processed manually or with Nextflow workflows using Skyline and Limelight. The results were exported using the Skyline document grid or from Limelight. Downstream analysis and figure generation were perfomed using Skyline, Panorama, R scripts, and Inkscape.
 
