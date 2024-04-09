@@ -1,6 +1,6 @@
 # MacCoss Lab QC for sample preparation, system suitability, and quantitative results.
 
-This repository contains most of the input files and the analyses described in the manuscript **"A framework for quality control in quantitative proteomics"**, which is currently located on bioRxiv under the DOI (TBD). Any files not located here are freely and openly accessible on this [public Panorama page](https://panoramaweb.org/MacCoss/Tsantilas_Public/20240214_QC_Companion_Page/project-begin.view).
+This repository contains most of the input files and the analyses described in the manuscript **"A framework for quality control in quantitative proteomics"**, which is currently located on bioRxiv under the DOI (TBD). Any files not located here are freely and openly accessible on [Panorama Public](https://panoramaweb.org/maccoss-sample-qc-system-suitability.url).
 
 Data was processed manually or with Nextflow workflows using Skyline and Limelight. The results were exported using the Skyline document grid or from Limelight. Downstream analysis and figure generation were perfomed using Skyline, Panorama, R scripts, and Inkscape.
 
@@ -24,11 +24,13 @@ $~$
 
 ## Important resources
 
-* **Temporary data deposition:** [Public Panorama project containing large script input files](https://panoramaweb.org/MacCoss/Tsantilas_Public/20240214_QC_Companion_Page/project-begin.view)
-
-* **Panorama Public:** In progress. Public repository of all raw files, processed data, and input files for the scripts deposited in this GitHub repository.
+* **Panorama Public:** [maccoss-sample-qc-system-suitability](https://panoramaweb.org/maccoss-sample-qc-system-suitability.url)
 
 * **Limelight Project:** [MacCoss QC Paper 2024 - Project 131](https://limelight.yeastrc.org/limelight/d/pg/project/131)
+
+* **ProteomeXchange registration:** [Dataset PXD051318](https://proteomecentral.proteomexchange.org/cgi/GetDataset?ID=PXD051318)
+
+* **Dataset DOI:** [10.6069/hmtb-tp04](https://doi.org/10.6069/hmtb-tp04)
 
 
 $~$
@@ -53,8 +55,8 @@ Scripts are located in the **bin** folder.
 
 * **bin/figs** subfolder contrains scripts used to generate figure 7
 
-  - **plot_7a.r:** R script that is used to generate the Figure 7A
-  - **plot_7b.r:** R script that is used to generate the following Figure 7B and 7C
+  - **plot_7a.r:** R script that is used to generate Figure 7A
+  - **plot_7b.r:** R script that is used to generate Figure 7B
 
 $~$
 
@@ -117,9 +119,9 @@ Input files for scripts are located in the **input** folder. All of the files up
 
 ### interim_dat.r input files
 
-* **Figure7_DIAPeptideTotalAreaFragmentPivot.csv.csv:** Total area fragment values extracted using Skyline (Figure 7A,7B, and 7C).
+* **Figure7_DIAPeptideTotalAreaFragmentPivot.csv.csv:** Total area fragment values extracted using Skyline (Figure 7A and 7B).
 
-* **Figure7_TPAD_CSF_meta-12-13-2022.csv.csv:** Metadata exported from Skyline (Figure 7A,7B, and 7C).
+* **Figure7_TPAD_CSF_meta-12-13-2022.csv.csv:** Metadata exported from Skyline (Figure 7A and 7B).
 
 
 ### processed_dat.r input files
@@ -184,8 +186,7 @@ Panels generated in "maccoss_qc_figures_3_4_5_6_S1.Rmd".
 * **Figure 7:**
 Panels generated in "plot_7a.r" and "plot_7b.r".
   - **7A:** Assessing the effect of median normalization and batch correction on peptide and protein CVs in the inter-batch external QC samples within each batch.
-  - **7B:** Plotting the CV vs Log2(Median Abundance) across all batches to assess the effects of normalization and batch correction on peptide and protein CVs in the inter-batch external QC samples.
-  - **7C:** Plotting Frequency distribution of the protein and peptide CVs across all batches to assess the effects of normalization and batch correction on peptide and protein CVs in the inter-batch external QC samples.
+  - **7B:** (Left) Plotting the CV vs Log2(Median Abundance) across all batches to assess the effects of normalization and batch correction on peptide and protein CVs in the inter-batch external QC samples, (Right) Plotting Frequency distribution of the protein and peptide CVs across all batches to assess the effects of normalization and batch correction on peptide and protein CVs in the inter-batch external QC samples.
 
 * **Supplementary Figure S1:**
   - **S1A:** Exported Skyline MS2 peak areas of yeast enolase peptide AADALLLK from samples in running order.
