@@ -63,7 +63,7 @@ $~$
 
 ## Files
 
-Input files for scripts are located in the **input** folder. All of the files uploaded to **input** will also located on the MacCoss QC (2024) page of PanoramaWeb.
+Input files 25 MB or less for scripts are located in the **input** folder. All of the files uploaded to **input** will also located on the MacCoss QC (2024) page of PanoramaWeb. Any files larger than 25 MB are located in the figure subfolders of [Panorama Public](https://panoramaweb.org/maccoss-sample-qc-system-suitability.url).
 
 ### maccoss_qc_figures_3_4_5_6_S1.Rmd input files
 
@@ -103,13 +103,15 @@ Input files for scripts are located in the **input** folder. All of the files up
 * **Figure6_timeline_format.csv:** Organizer .csv to set-up and label the maintenance timeline in Figure 6A.
 * **Figure6_Run_Organizer.csv:** Organizer .csv to set-up and label Figure 6B.
 
-#### ***Please note some Input files are only located on Panorama:*** [Public Panorama project](https://panoramaweb.org/MacCoss/Tsantilas_Public/20240214_QC_Companion_Page/project-begin.view) that contains script input files that are larger than 25 MB.
+#### ***Please note some input files are only located on Panorama:*** [Panorama Public](https://panoramaweb.org/maccoss-sample-qc-system-suitability.url) figure subfolders contain script input files that are larger than 25 MB.
 
-* Figure4_DIA_PeakArea_RetTime_Chromatogram_Export
+* Figure3_PRM_PeakArea_RetTime_Chromatogram_Export.csv
 
-* Figure5_DIA_PeakArea_RetTime_Chromatogram_Export
+* Figure4_DIA_PeakArea_RetTime_Chromatogram_Export.csv
 
-* Figure5_PRM_PeakArea_RetTime_Chromatogram_Export
+* Figure5_DIA_PeakArea_RetTime_Chromatogram_Export.csv
+
+* Figure5_PRM_PeakArea_RetTime_Chromatogram_Export.csv
 
 
 ### functions.r input files
