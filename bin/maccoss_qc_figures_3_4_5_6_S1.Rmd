@@ -540,9 +540,10 @@ Defined 2 functions with the following input parameters to put together Figure 3
  
 $~$ 
 
+
 ```{r fig3_functions, results = "hold", collapse = TRUE}
 
-fig3_ms1_chromatogram <- function(dataframe, replicate_name, peptide, time_col, intensity_col, y_axis_max, label_buffer, x_min_buffer_5, x_max_buffer_5, x_axis_label, y_axis_label, fig3_subtitle, fig3_top_margin){
+fig3_ms1_chromatogram <- function(dataframe, replicate_name, peptide, time_col, intensity_col, y_axis_max, label_buffer, x_min_buffer_5, x_max_buffer_5, x_axis_label, y_axis_label, fig3_subtitle, fig3_top_margin, legend_string, date_label){
 
   subdata <- dataframe %>%
              filter(Replicate == replicate_name) %>%
@@ -551,7 +552,12 @@ fig3_ms1_chromatogram <- function(dataframe, replicate_name, peptide, time_col, 
              rename("Time" = time_col, 
                     "Intensity" = intensity_col)
 
-    subdata_chromatogram <- subdata %>%
+  subdata_renamed <- subdata
+  subdata_renamed$Fragment.Ion <- gsub('precursor [M+2]', paste0('M+2'), subdata_renamed$Fragment.Ion, fixed = TRUE)
+  subdata_renamed$Fragment.Ion <- gsub('precursor [M+1]', paste0('M+1'), subdata_renamed$Fragment.Ion, fixed = TRUE)
+  subdata_renamed$Fragment.Ion <- gsub("precursor", paste0('M'), subdata_renamed$Fragment.Ion)
+
+    subdata_chromatogram <- subdata_renamed %>%
                      separate_longer_delim(., cols = c("Time", "Intensity"), delim = ",") %>%
                      group_by(Fragment.Ion)
 
@@ -582,11 +588,18 @@ chromatogram_plot  <-  (ggplot(subdata_chromatogram,
                      axis.text.y = element_text(size=18, color = "black", margin = margin(t=0, r=5, b=0, l=10)),
                      axis.title.x = element_text(size = 22, color = "black", hjust = 0.5, margin = margin(t = 0, r = 0, b = 0, l = 0)),
                      axis.title.y = element_text(size = 22, color = "black", margin = margin(t = 0, r = 0, b = 0, l = 0)),
-                     legend.position = "none",
-                     plot.title=element_text(size=22, color = "black", hjust = 0.5)
-                     ) +
-                ggtitle(fig3_subtitle) +
-                scale_color_manual(values = ms1_Palette) +
+                     legend.position = legend_string,
+                     legend.title = element_text(size = 20),
+                     legend.text = element_text(size = 20),
+                     legend.margin=margin(c(0,0,0,0), "in"),
+                     legend.spacing.x = unit(0.1, "in"),  
+                     legend.key.size = unit(0.4, "in"),
+                     plot.title=element_text(size=24, color = "black", hjust = 0),
+                     plot.subtitle=element_text(size=22, hjust=0.5, color="black")) +
+                ggtitle(fig3_subtitle,
+                        subtitle = date_label) +
+                guides(color=guide_legend(nrow=1)) +
+                scale_color_manual(name = "Fragment Ions", values = ms1_Palette) +
                 scale_x_continuous(name=x_axis_label, limits=c(chrom_x_min, chrom_x_max)) +
                 scale_y_continuous(name=y_axis_label, limits=c(0, y_axis_max)) +
                 geom_hline(yintercept=0, linetype="solid", color = "black", linewidth=1) +
@@ -597,6 +610,7 @@ chromatogram_plot  <-  (ggplot(subdata_chromatogram,
 chromatogram_plot
 
 }
+
 
 
 fig3_taf <- function(dataframe, peptide, y_axis_maximum){
@@ -614,7 +628,7 @@ fig3_subdata <- dataframe %>%
                                geom_bar(stat = "identity", fun = "mean") +
                                 geom_errorbar(aes(ymin=Avg-SD, ymax=Avg+SD), width=.2, position=position_dodge(.9)) +
                                 theme_minimal()+
-                                theme(plot.margin = margin(0.3, 0, 0, 0, "in"),  # t, r, b, l
+                                theme(plot.margin = margin(0, 0, 0, 0, "in"),  # t, r, b, l
                                       panel.grid.major.x = element_blank(),
                                       panel.grid.major.y = element_line(color="azure3"),
                                       panel.grid.minor.x = element_blank(),
@@ -624,11 +638,11 @@ fig3_subdata <- dataframe %>%
                                       axis.title.x = element_blank(),
                                       axis.title.y = element_text(size = 18, color = "black", margin = margin(t = 0, r = 0, b = 0, l = 0)),
                                       legend.position = "none",
-                                      plot.title=element_text(size=22, color = "black", hjust = 0.5)) +
-                                 ggtitle(peptide) +
-                                 geom_hline(yintercept=0, linetype="solid", color = "black", linewidth=0.5) +
+                                      plot.title=element_text(size=21, color = "black", hjust = 0)) +
+                                 ggtitle(paste0("PRM: ",peptide)) +
+                                 geom_hline(yintercept=0, linetype="solid", color = "black", linewidth=0) +
                                  ylim(0,((y_axis_maximum)+(y_axis_maximum*.05))) +
-                                 scale_x_discrete(name="Run Date") +
+                                 scale_x_discrete(name="Run Date", labels=c("2014" = "12/2014", "2015" = "04/2015", "2016-1" = "02/2016", "2016-2" = "03/2016")) + 
                                  scale_y_continuous(name="Total Area Fragment") +
                                  scale_fill_manual(values = c("2014" = cbPalette[1], "2015" = cbPalette[8], "2016-1" = cbPalette[6], "2016-2" = cbPalette[2])))
 
@@ -640,6 +654,15 @@ Plot_fig3_PRM_prtc_taf
 <br/><br/>
 
 ## Figure 3
+
+**NOTE:** Code generates all components of Figure 3, however manual changes to center labels were done in Inkscape:
+
+* The "Fragment Ion" label was moved to the right into x position 700
+
+* The legend keys were moved to the right into x position 665
+
+* The x-axis label "Time (Minutes)" label was moved to the right into x position 700
+
 
 <br/><br/>
 
@@ -684,7 +707,7 @@ fig3_timeline <- data.frame("Position_x" = c(-225, -200, -75, -50, 75, 100, 115,
 ## Plotting rough maintenance timeline to correspond with the data in 3B-G
 figure3a <- (ggplot(data = fig3_timeline, aes(x=Position_x, y=Position_y)) +
           theme_void()+
-          theme(plot.margin = margin(0.2, 0, 0.2, 0, "in"),  # t, r, b, l 
+          theme(plot.margin = margin(0.2, 0, 0.4, 0, "in"),  # t, r, b, l 
                 axis.title.x=element_blank(),
                 axis.title.y=element_blank(),
                 axis.text.x=element_blank(),
@@ -756,7 +779,9 @@ fig3_prtc_2014_chrom <- fig3_ms1_chromatogram(dataframe = fig3_prm,
                                               x_axis_label = "", 
                                               y_axis_label = fig3_shared_y, 
                                               fig3_subtitle = fig3_prtc, 
-                                              fig3_top_margin = 0.075)
+                                              fig3_top_margin = 0.075,
+                                              legend_string = "none",
+                                              date_label = "12/2014")
 
 fig3_prtc_2015_chrom <- fig3_ms1_chromatogram(dataframe = fig3_prm, 
                                               replicate_name = rep_2015, 
@@ -770,8 +795,10 @@ fig3_prtc_2015_chrom <- fig3_ms1_chromatogram(dataframe = fig3_prm,
                                               x_axis_label = "", 
                                               y_axis_label = "", 
                                               fig3_subtitle = "", 
-                                              fig3_top_margin = 0.075)
-
+                                              fig3_top_margin = 0.075,
+                                              legend_string = c(0.5, 1.3),
+                                              date_label = "04/2015")
+                     
 fig3_prtc_2016_chrom <- fig3_ms1_chromatogram(dataframe = fig3_prm, 
                                               replicate_name = rep_2016, 
                                               peptide = fig3_prtc, 
@@ -784,7 +811,9 @@ fig3_prtc_2016_chrom <- fig3_ms1_chromatogram(dataframe = fig3_prm,
                                               x_axis_label = "", 
                                               y_axis_label = "", 
                                               fig3_subtitle = "", 
-                                              fig3_top_margin = 0.075)
+                                              fig3_top_margin = 0.075,
+                                              legend_string = "none",
+                                              date_label = "02/2016")
 
 fig3_prtc_2016_2_chrom <- fig3_ms1_chromatogram(dataframe = fig3_prm, 
                                                 replicate_name = rep_2016_2, 
@@ -798,7 +827,9 @@ fig3_prtc_2016_2_chrom <- fig3_ms1_chromatogram(dataframe = fig3_prm,
                                                 x_axis_label = "", 
                                                 y_axis_label = "", 
                                                 fig3_subtitle = "", 
-                                                fig3_top_margin = 0.075)
+                                                fig3_top_margin = 0.075,
+                                                legend_string = "none",
+                                                date_label = "03/2016")
 
 fig3_prtc_taf <- fig3_taf(dataframe = fig3_prm, 
                           peptide = fig3_prtc, 
@@ -819,7 +850,9 @@ fig3_bsa_2014_chrom <- fig3_ms1_chromatogram(dataframe = fig3_prm,
                                              x_axis_label = fig3_shared_x, 
                                              y_axis_label = fig3_shared_y, 
                                              fig3_subtitle = fig3_bsa, 
-                                             fig3_top_margin = 0.05)
+                                             fig3_top_margin = 0.05,
+                                             legend_string = "none",
+                                             date_label = "12/2014")
 
 fig3_bsa_2015_chrom <- fig3_ms1_chromatogram(dataframe = fig3_prm, 
                                              replicate_name = rep_2015, 
@@ -833,7 +866,9 @@ fig3_bsa_2015_chrom <- fig3_ms1_chromatogram(dataframe = fig3_prm,
                                              x_axis_label = "", 
                                              y_axis_label = "", 
                                              fig3_subtitle = "", 
-                                             fig3_top_margin = 0.05)
+                                             fig3_top_margin = 0.05,
+                                             legend_string = "none",
+                                             date_label = "04/2015")
 
 fig3_bsa_2016_chrom <- fig3_ms1_chromatogram(dataframe = fig3_prm, 
                                              replicate_name = rep_2016, 
@@ -847,7 +882,9 @@ fig3_bsa_2016_chrom <- fig3_ms1_chromatogram(dataframe = fig3_prm,
                                              x_axis_label = "", 
                                              y_axis_label = "", 
                                              fig3_subtitle = "", 
-                                             fig3_top_margin = 0.05)
+                                             fig3_top_margin = 0.05,
+                                             legend_string = "none",
+                                             date_label = "02/2016")
 
 fig3_bsa_2016_2_chrom <- fig3_ms1_chromatogram(dataframe = fig3_prm, 
                                                replicate_name = rep_2016_2, 
@@ -861,7 +898,9 @@ fig3_bsa_2016_2_chrom <- fig3_ms1_chromatogram(dataframe = fig3_prm,
                                                x_axis_label = "", 
                                                y_axis_label = "", 
                                                fig3_subtitle = "", 
-                                               fig3_top_margin = 0.05)
+                                               fig3_top_margin = 0.05,
+                                               legend_string = "none",
+                                               date_label = "03/2016")
 
 fig3_bsa_taf <- fig3_taf(dataframe = fig3_prm, 
                          peptide = fig3_bsa, 
@@ -895,11 +934,13 @@ $~$
                                 axis.text.y = element_text(size=16, color = "black"),
                                 axis.title.x = element_blank(),
                                 axis.title.y = element_text(size = 18, color = "black", margin = margin(t = 0, r = 0, b = 0, l = 0)),
+                                plot.title=element_text(size=21, color = "black", hjust = 0),
                                 legend.position = "none"
                                 ) +
+                          ggtitle("DDA: Peptides") +
                           geom_hline(yintercept=0, linetype="solid", color = "black", linewidth=0.5) +
                           ylim(0,(max(fig3_dda_pep$Num_Peptides)+(max(fig3_dda_pep$Num_Peptides)*.05))) +
-                          scale_x_discrete(name="Run Date") +
+                          scale_x_discrete(name="Run Date", labels=c("2014" = "12/2014", "2015" = "04/2015", "2016-1" = "02/2016", "2016-2" = "03/2016")) + 
                           scale_y_continuous(name="Average Peptides", breaks=c(2500,5000,7500)) +
                           scale_fill_manual(values = c("2014" = cbPalette[1], "2015" = cbPalette[8], "2016-1" = cbPalette[6], "2016-2" = cbPalette[2])))
 
@@ -917,11 +958,13 @@ $~$
                                 axis.text.y = element_text(size=16, color = "black"),
                                 axis.title.x = element_blank(),
                                 axis.title.y = element_text(size = 18, color = "black", margin = margin(t = 0, r = 0, b = 0, l = 0)),
+                                plot.title=element_text(size=21, color = "black", hjust = 0),
                                 legend.position = "none"
                                 ) +
+                          ggtitle("DDA: PSMs") +
                           geom_hline(yintercept=0, linetype="solid", color = "black", linewidth=0.5) +
                           ylim(0,(max(fig3_dda_pep$Num_Peptides)+(max(fig3_dda_pep$Num_Peptides)*.05))) +
-                          scale_x_discrete(name="Run Date") +
+                          scale_x_discrete(name="Run Date", labels=c("2014" = "12/2014", "2015" = "04/2015", "2016-1" = "02/2016", "2016-2" = "03/2016")) + 
                           scale_y_continuous(name="Average PSMs", breaks=c(3000,6000,9000,12000)) +
                           scale_fill_manual(values = c("2014" = cbPalette[1], "2015" = cbPalette[8], "2016-1" = cbPalette[6], "2016-2" = cbPalette[2])))
 
@@ -958,7 +1001,7 @@ $~$
      fig3 <- (figure3a + fig3_prtc_2014_chrom + fig3_prtc_2015_chrom + fig3_prtc_2016_chrom + fig3_prtc_2016_2_chrom + fig3_bsa_2014_chrom + fig3_bsa_2015_chrom + fig3_bsa_2016_chrom + fig3_bsa_2016_2_chrom + fig3_DDA_PSM + fig3_DDA_Peptide + fig3_prtc_taf + fig3_bsa_taf + plot_layout(design = fig3_layout) + plot_annotation(tag_levels = list(c("A", "B",  "", "", "", "C", "", "", "", "D", "E", "F", "G"))) & theme(plot.tag = element_text(size = 28)))
 
 # Export Figure 3 as .svg file
-  ggsave(file = paste("output\\figures\\",basename,filenamebase,"Figure3.svg", sep=""), plot=fig3, width= 20, height=17) 
+  ggsave(file = paste("output\\figures\\",basename,filenamebase,"Figure3_partial.svg", sep=""), plot=fig3, width= 20, height=18.4) 
 
 ```
 
