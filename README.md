@@ -43,14 +43,15 @@ $~$
 
 Scripts are located in the **bin** folder.
 
-* **maccoss_qc_figures_3_4_5_6_S1.Rmd:** R Markdown that is used to generate the following figures:
+* **maccoss_qc_figures_3_4_5_6_S1_S2.Rmd:** R Markdown that is used to generate the following figures:
 
   - Figure 3
   - Figure 4
   - Figure 5
   - Figure 6
   - Supplementary Figure 1
-
+  - Supplementary Figure 2
+  - 
 * **bin/data** subfolder contains scripts needed to process data to generate Figure 7 using two additional scripts found in **figs** subfolder
 
   - functions.r
@@ -69,7 +70,7 @@ $~$
 
 Input files 25 MB or less for scripts are located in the **input** folder. All of the files uploaded to **input** will also located on the MacCoss QC (2024) page of PanoramaWeb. Any files larger than 25 MB are located in the figure subfolders of [Panorama Public](https://panoramaweb.org/maccoss-sample-qc-system-suitability.url).
 
-### maccoss_qc_figures_3_4_5_6_S1.Rmd input files
+### maccoss_qc_figures_3_4_5_6_S1_S2.Rmd input files
 
 #### ***Skyline Document:*** figure3_PRM_system_suitability.sky.zip
 * **Figure3_PRM_metadata.csv:** Metadata of PRM system suitability runs shown in Figure 3.
@@ -158,12 +159,12 @@ Both panels generated using Inkscape. No script or files on github - located on 
   - **1B:** Integration of quality control and system suitability methods into workflow.
 
 * **Figure 2:**
-Panels assembled in "maccoss_qc_figures_3_4_5_6_S1.Rmd". Simplified, combined, and resized both panels in Inkscape. No script or files on github - located on Panorama.
+Panels assembled in "maccoss_qc_figures_3_4_5_6_S1_S2.Rmd". Simplified, combined, and resized both panels in Inkscape. No script or files on github - located on Panorama.
   - **2A:** Exported PDF of Panorama AutoQC plot of transition area. Plot area simplified using inkscape.
   - **2B:** Exported PDF of Panorama AutoQC plot of Trailing CV of the previous 5 replicates. Plot area simplified using inkscape.
 
 * **Figure 3:**
-Panels generated in "maccoss_qc_figures_3_4_5_6_S1.Rmd".
+Panels generated in "maccoss_qc_figures_3_4_5_6_S1_S2.Rmd".
   - **3A:** Maintenance timeline on Orbitrap Fusion Lumos.
   - **3B:** MS1 chromatogram of representative LTILEELR peptide from each instrument batch exported from Skyline and annotated with isotope dot product (idotp).
   - **3C:** MS1 chromatogram of representative LVNELTEFAK peptide from each instrument run exported from Skyline and annotated with isotope dot product (idotp).
@@ -171,12 +172,12 @@ Panels generated in "maccoss_qc_figures_3_4_5_6_S1.Rmd".
   - **3E:** Average total area frament of LTILEELR in each PRM instrument batch.
 
 * **Figure 4:**
-Panels generated in "maccoss_qc_figures_3_4_5_6_S1.Rmd".
+Panels generated in "maccoss_qc_figures_3_4_5_6_S1_S2.Rmd".
   - **4A:** Exported Skyline MS2 peak areas of yeast enolase peptide VNQIGTLSESIK from samples in running order.
   - **4B:** Exported Skyline MS2 peak areas of yeast enolase peptide VNQIGTLSESIK from samples grouped by sample preparation condition.
 
 * **Figure 5:**
-Panels generated in "maccoss_qc_figures_3_4_5_6_S1.Rmd". Data exported using Skyline report "QC_PeakArea_RetTime_Chromatogram.skyr". Adjusted x-axis title positions in Inkscape.
+Panels generated in "maccoss_qc_figures_3_4_5_6_S1_S2.Rmd". Data exported using Skyline report "QC_PeakArea_RetTime_Chromatogram.skyr". Adjusted x-axis title positions in Inkscape.
   - **5A:** Peak area of yeast enolase peptide AVDDFLISLDGTANK from sample runs.
   - **5B:** Peak area of yeast enolase peptide GLIVGGYGTR from sample runs.
   - **5C:** MS2 chromatogram of yeast enolase peptide AVDDFLISLDGTANK from sample 07 exported from Skyline plus zoomed-in inset.
@@ -187,9 +188,9 @@ Panels generated in "maccoss_qc_figures_3_4_5_6_S1.Rmd". Data exported using Sky
   - **5H:** Retention times of yeast enolase peptide GLIVGGYGTR from sample runs.
 
 * **Figure 6:**
-Panels generated in "maccoss_qc_figures_3_4_5_6_S1.Rmd".
+Panels generated in "maccoss_qc_figures_3_4_5_6_S1_S2.Rmd".
   - **6A:** Maintenance timeline of Orbitrap Fusion Lumos Tribrid.
-  - **6B:** Total Area Fragment of 8 individual PRTC peptides in system suitability and sample runs across 4 batches.
+  - **6B:** Total Area Fragment of 4 individual PRTC peptides in system suitability and sample runs across 4 batches. Peptides from 2 different run types are plotted on a share y-axis of a single panel. 
 
 * **Figure 7:**
 Panels generated in "plot_7a.r" and "plot_7b.r".
@@ -205,3 +206,8 @@ Panels generated in "plot_7a.r" and "plot_7b.r".
   - **S1F:** Exported Skyline MS2 peak areas of PRTC peptide TASEFDSAIAQDK from samples in running order.
   - **S1G:** Exported Skyline MS2 peak areas of PRTC peptide NGFILDGFPR from samples grouped by sample preparation condition.
   - **S1H:** Exported Skyline MS2 peak areas of PRTC peptide TASEFDSAIAQDK from samples grouped by sample preparation condition.
+ 
+* * **Supplementary Figure S2:**
+Panels generated in "maccoss_qc_figures_3_4_5_6_S1_S2.Rmd".
+  - **6A:** Maintenance timeline of Orbitrap Fusion Lumos Tribrid.
+  - **6B:** Total Area Fragment of 8 individual PRTC peptides in system suitability and sample runs across 4 batches. Peptides from 2 different run types are split into two panels with y-axes on the same scale.
