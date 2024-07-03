@@ -135,31 +135,27 @@ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)
 
 * Packages required: 
 
-  + knitr (version 1.43)
+  + knitr (version 1.45)
 
-  + kableExtra (version 1.3.4)
+  + kableExtra (version 1.4.0)
   
-  + dplyr (version 1.1.2)
+  + dplyr (version 1.1.4)
   
-  + stringr (version 1.5.0)
+  + stringr (version 1.5.1)
   
-  + tidyr (version 1.3.0)
+  + tidyr (version 1.3.1)
   
-  + matrixStats (version 0.63.0)
+  + matrixStats (version 1.2.0)
   
   + tibble (version 3.2.1)
   
-  + ggplot2 (version 3.4.2)
+  + ggplot2 (version 3.5.0)
   
-  + forcats (version 1.0.0)
-  
-  + ggnewscale (version 0.4.9)
-  
-  + RColorBrewer (version 1.1-3)
-  
-  + magick (version 2.7.4)
-  
+  + ggnewscale (version 0.4.10)
+
   + patchwork (version 1.1.2)
+  
+  + ggnewscale (version 0.4.10)
 
 
 <br/><br/>
@@ -180,8 +176,10 @@ library(tidyr)
 library(matrixStats)
 library(tibble)
 library(ggplot2)
-library(magick)
+# library(magick)
 library(patchwork)
+library(ggnewscale)
+
 
 sessionInfo()
 
@@ -692,7 +690,7 @@ $~$
 
 ```{r}
 # Setting-up dataframe to plot timeline of maintenance and data in figure 3
-fig3_timeline <- data.frame("Position_x" = c(-225, -200, -75, -50, 75, 100, 115, 285), 
+fig3_timeline <- data.frame("Position_x" = c(-260, -230, -75, -55, 85, 105, 125, 295), 
                             "Position_y" = c(45, 5, 45, 5, 55, 35, 5, 5),
                             "Orientation"= c(1, -1, 1, -1, 1, 1, -1, -1),
                             "Note"= c("New RF coil, LIT, software", "12/2014", "Cleaned optics",  
@@ -707,7 +705,7 @@ fig3_timeline <- data.frame("Position_x" = c(-225, -200, -75, -50, 75, 100, 115,
 ## Plotting rough maintenance timeline to correspond with the data in 3B-G
 figure3a <- (ggplot(data = fig3_timeline, aes(x=Position_x, y=Position_y)) +
           theme_void()+
-          theme(plot.margin = margin(0.2, 0, 0.4, 0, "in"),  # t, r, b, l 
+          theme(plot.margin = margin(t = 0.2, r = 0, b = 0.4, l = 0, "in"),  # t, r, b, l 
                 axis.title.x=element_blank(),
                 axis.title.y=element_blank(),
                 axis.text.x=element_blank(),
@@ -719,7 +717,7 @@ figure3a <- (ggplot(data = fig3_timeline, aes(x=Position_x, y=Position_y)) +
           coord_fixed(xlim=c(0,100),
                   ylim = c(0, 75),
                   clip = 'off') +   
-          geom_segment(data=fig3_timeline, aes(y=20,yend=20,x=-250,xend=350), color='black', size=3) +
+          geom_segment(data=fig3_timeline, aes(y=20,yend=20,x=-300,xend=350), color='black', size=3) +
 
           annotate("text", x = 50, y = 75, label="Significant Maintenance Timeline", colour = "black", size=9) +
           geom_segment(data=fig3_timeline, aes(y=20,yend=(Position_y+(1.5*Orientation)),x=Position_x,xend=Position_x), color='black', size=1) +
@@ -1018,7 +1016,7 @@ $~$
 
 
 
-# Figure 4, Supplemental Figure 1 {.tabset .tabset-fade}
+# Figure 4, Figure S1 {.tabset .tabset-fade}
 
 
 <br/><br/>
@@ -1498,9 +1496,9 @@ ggsave(file = paste("output\\figures\\",basename,filenamebase,"Figure4.png", sep
 ```
 <br/><br/>
 
-## Supplemental Figure S1
+## Figure S1
 
-Assembling Supplementary Figure 1.
+Assembling Supplementary Figure S1.
 
 $~$
 
@@ -2180,7 +2178,7 @@ fig5 <- (fig5_yeno1_intensity + fig5_prtc_intensity + fig5_7_yeno1_combined + fi
 <br/><br/>
 
 
-# Figure 6 {.tabset .tabset-fade}
+# Figure 6, Figure S2 {.tabset .tabset-fade}
 
 <br/><br/>
 
@@ -2260,23 +2258,23 @@ fig6_PRTC <- fig6_summary %>%
 
 # 
 fig6_PRTC$Peptide.Sequence <- factor(fig6_PRTC$Peptide.Sequence, levels=unique(fig6_PRTC$Peptide.Sequence))
-levels(fig6_PRTC$Peptide.Sequence)
-print(sapply(fig6_PRTC, class))
+# levels(fig6_PRTC$Peptide.Sequence)
+# print(sapply(fig6_PRTC, class))
 
 #
 fig6_PRTC$PlotGrouping <- factor(fig6_PRTC$PlotGrouping, levels=unique(fig6_PRTC$PlotGrouping))
-levels(fig6_PRTC$PlotGrouping )
+# levels(fig6_PRTC$PlotGrouping )
 
 #
 fig6_PRTC$Group <- factor(fig6_PRTC$Group, levels=c("SS","IQC"))
 levels(fig6_PRTC$Group) <- list("System Suitability"  = "SS", "Internal QC" = "IQC")
 levels(fig6_PRTC$Group)
-print(sapply(fig6_PRTC, class))
+# print(sapply(fig6_PRTC, class))
 
 
 fig6_tibble <- as_tibble(fig6_PRTC)
-print(sapply(fig6_tibble, class))
-levels(fig6_tibble$FigureOrder)
+# print(sapply(fig6_tibble, class))
+# levels(fig6_tibble$FigureOrder)
 
 #
 fig6_tibble$Abbreviation <- gsub("Spacer", paste0('†'), fig6_tibble$Abbreviation)
@@ -2284,7 +2282,7 @@ fig6_tibble$Abbreviation <- gsub("2ndSpace", paste0('‡'), fig6_tibble$Abbrevia
 
 # 
 fig6_tibble$FigureOrder <- as.numeric(as.character(unlist(fig6_tibble$FigureOrder)))
-print(sapply(fig6_tibble, class))
+# print(sapply(fig6_tibble, class))
 
 
 ```
@@ -2295,17 +2293,25 @@ Filtering data to only include the 8 PRTC peptides most often examined in the Ma
 
 $~$
 
-```{r fig6_filtering_data, fig.show='hide', results = "hold", collapse = TRUE}
+```{r fig6_andS2_8peptides, fig.show='hide', results = "hold", collapse = TRUE}
 # Filtering to include 8 PRTC peptides out of 15 possible. Represent the most common PRTC peptides the MacCoss lab uses to assess data
 
   # Vector to filter down to 8 PRTC peptides for simplicity....
   PRTC_fig6 <- c("NGFILDGFPR", "ELGQSGVDTYLQTK", "ELASGLSFPVGFK", "GISNEGQNASIK", "TASEFDSAIAQDK", "GLILVGGYGTR", "SFANQPLEVVYSK", "LTILEELR")
          
-fig6_tibble_plotting <- fig6_tibble[fig6_tibble$Peptide.Sequence == PRTC_fig6[1] | fig6_tibble$Peptide.Sequence == PRTC_fig6[2] | fig6_tibble$Peptide.Sequence == PRTC_fig6[3] | fig6_tibble$Peptide.Sequence == PRTC_fig6[4] | fig6_tibble$Peptide.Sequence == PRTC_fig6[5] | fig6_tibble$Peptide.Sequence == PRTC_fig6[6] | fig6_tibble$Peptide.Sequence == PRTC_fig6[7] | fig6_tibble$Peptide.Sequence == PRTC_fig6[8],]
+fig6_s2_tibble_plotting <- fig6_tibble[fig6_tibble$Peptide.Sequence == PRTC_fig6[1] | fig6_tibble$Peptide.Sequence == PRTC_fig6[2] | fig6_tibble$Peptide.Sequence == PRTC_fig6[3] | fig6_tibble$Peptide.Sequence == PRTC_fig6[4] | fig6_tibble$Peptide.Sequence == PRTC_fig6[5] | fig6_tibble$Peptide.Sequence == PRTC_fig6[6] | fig6_tibble$Peptide.Sequence == PRTC_fig6[7] | fig6_tibble$Peptide.Sequence == PRTC_fig6[8],]
+
+```
+
+```{r fig6_4peptides, results = "hold", collapse = TRUE}
+fig6_tibble_4pep <- fig6_s2_tibble_plotting %>%
+                    filter(Peptide.Sequence == "GLILVGGYGTR" | Peptide.Sequence == "NGFILDGFPR" | Peptide.Sequence == "GISNEGQNASIK" | Peptide.Sequence == "SFANQPLEVVYSK")
 
 ```
 
 <br/><br/>
+
+## Fig. 6 Settings
 
 Setting up shared settings for Figure 6 panels.
 
@@ -2324,13 +2330,13 @@ $~$
 
 # Setting y-axis limit base values for panels in 6B to make labels more easily adjustable.
     # System suitability panel - GLILVGGYGTR is most intense peptide
-    fig6_max_y_ss <- (fig6_tibble_plotting %>%
+    fig6_max_y_ss <- (fig6_s2_tibble_plotting %>%
                       filter(., Group == "System Suitability") %>%
                       filter(., Peptide.Sequence == "GLILVGGYGTR"))
     avg_y_max_ss <- (max(fig6_max_y_ss$Total.Area.Fragment))
 
     # Internal QC panel - GLILVGGYGTR is most intense peptide    
-    fig6_max_y_iqc <- (fig6_tibble_plotting %>%
+    fig6_max_y_iqc <- (fig6_s2_tibble_plotting %>%
                        filter(., Group == "Internal QC") %>%
                        filter(., Peptide.Sequence == "GLILVGGYGTR"))
     avg_y_max_iqc <- (max(fig6_max_y_iqc$Total.Area.Fragment)+500000)
@@ -2358,7 +2364,7 @@ $~$
 figure6a <- (ggplot(data = fig6_timeline, aes(x=FigureOrder, y=Position_y)) +
           theme_void()+
           theme(plot.margin = margin(0, 0, 0, 0, "in"),  # t, r, b, l 
-                panel.spacing = unit(20, "pt"),
+                panel.spacing = unit(0, "pt"),
                 axis.title.x=element_blank(),
                 axis.title.y=element_blank(),
                 axis.text.x=element_blank(),
@@ -2370,7 +2376,7 @@ figure6a <- (ggplot(data = fig6_timeline, aes(x=FigureOrder, y=Position_y)) +
           coord_fixed(xlim=c(1,avg_x_max),
                   ylim = c(0, 7.5),
                   clip = 'off') +   
-          geom_segment(data=fig6_timeline, aes(y=2.5,yend=2.5,x=-10,xend=72), color='black', size=2) +
+          geom_segment(data=fig6_timeline, aes(y=2.5,yend=2.5,x=-16,xend=73), color='black', size=2) +
 
           annotate("text", x = 30, y = 7.5, label="5 months of maintenance after turbo failure", colour = "black", size=10) +
           geom_segment(data=fig6_timeline, aes(y=Position_y,yend=(Position_y+(1.5*Orientation)),x=Position_x,xend=Position_x), color='black', size=0.2) +
@@ -2391,9 +2397,176 @@ Total area fragment of PRTC peptides in SS and IQC runs used to plot intensity o
 
 Setting up a dataframe containing annotations to put together the final figure.
 
+<br/><br/>
+
+**Figure 6**
+
+Combining the maintenance timeline in Figure 6A and the TAF of PRTC peptides in Figure 6B to generate the final annotated Figure 6.
+
 $~$
 
-```{r fig6b_annotations, fig.show='hide', results = "hold", collapse = TRUE, }
+```{r fig6b_annotations, results = "hold", collapse = TRUE}
+# Setting up a data frame containing numeric positioning and label information to differentiate between instrument batches.
+
+box_bottombuffer <- 0.125e09
+box_topbuffer <- 0.325E09
+
+text_buffer <- 1.3E09
+
+annotations <- data.frame(
+  xmin = c(0.75, 17.7, 25.7, 41.7, 0, 0, 0, 0),
+  xmax = c(17.3, 25.3, 41.3, 62.5, 0, 0, 0, 0),
+  ymin = c(((avg_y_max_ss+text_buffer)-box_bottombuffer), ((avg_y_max_ss+text_buffer)-box_bottombuffer), ((avg_y_max_ss+text_buffer)-box_bottombuffer), ((avg_y_max_ss+text_buffer)-box_bottombuffer), 0, 0, 0, 0),
+  ymax = c(((avg_y_max_ss+text_buffer)+box_topbuffer), ((avg_y_max_ss+text_buffer)+box_topbuffer), ((avg_y_max_ss+text_buffer)+box_topbuffer), ((avg_y_max_ss+text_buffer)+box_topbuffer), 0, 0, 0, 0),
+  x_text = c(5.5, 18, 30, 49, 0, 0, 0, 0),
+  y_text = c((avg_y_max_ss+text_buffer), (avg_y_max_ss+text_buffer), (avg_y_max_ss+text_buffer), (avg_y_max_ss+text_buffer), 0, 0, 0, 0),
+  label = c("Aug 16 - Aug 19", "Oct 12 - Oct 13", "Oct 29 - Nov 7", "Dec 1 - Dec 5", "", "", "", ""),
+  Group = c("System Suitability", "System Suitability", "System Suitability", "System Suitability","Internal QC", "Internal QC", "Internal QC", "Internal QC")
+)
+
+annotations$Group <- factor(annotations$Group, levels=c("System Suitability","Internal QC"))
+levels(annotations$Group)
+print(sapply(annotations, class))
+
+iqc_1panel_buffer <- 0.1e9
+iqc_1panel_shading <- "gray92"
+
+# Setting colors for rectangles behind data
+box_colors <- c("#FCFAC7","#CFE0FC","#F1D0F2", "azure3","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF")
+
+
+# Setting colors for rectangles behind data
+    fig6_iqc <- c("NGFILDGFPR" = "#999999", "GISNEGQNASIK" = "#009E73", "GLILVGGYGTR" = "#0072B2", "SFANQPLEVVYSK" = "#D55E00")
+    fig6_ss <- c("NGFILDGFPR" = "gray70", "GISNEGQNASIK" = "#33CC99", "GLILVGGYGTR" = "#0099FF", "SFANQPLEVVYSK" = "#FF9933")
+          
+```
+
+
+
+```{r fig6b_plot, fig.show='hide', results = "hold", collapse = TRUE}
+
+# Figure 6B. Shows the average total area fragment (+/- SD) of all 15 PRTC peptides in a subset of system suitability and sample runs.
+figure6b <- (ggplot(mapping = aes(x,y)) +
+
+  # Annotating IQC samples with rectangles 
+      annotate("rect", xmin = 4.5, xmax = 8.5, ymin = 0, ymax = (avg_y_max_iqc+iqc_1panel_buffer), fill = iqc_1panel_shading, alpha = 0.5) +
+      annotate("rect", xmin = 9.5, xmax = 13.5, ymin = 0, ymax = (avg_y_max_iqc+iqc_1panel_buffer), fill = iqc_1panel_shading, alpha = 0.5) +    
+      annotate("rect", xmin = 21.5, xmax = 25.5, ymin = 0, ymax = (avg_y_max_iqc+iqc_1panel_buffer), fill = iqc_1panel_shading, alpha = 0.5) +    
+      annotate("rect", xmin = 29.5, xmax = 33.5, ymin = 0, ymax = (avg_y_max_iqc+iqc_1panel_buffer), fill = iqc_1panel_shading, alpha = 0.5) +    
+      annotate("rect", xmin = 36.5, xmax = 41.5, ymin = 0, ymax = (avg_y_max_iqc+iqc_1panel_buffer), fill = iqc_1panel_shading, alpha = 0.5) +    
+      annotate("rect", xmin = 45.5, xmax = 49.5, ymin = 0, ymax = (avg_y_max_iqc+iqc_1panel_buffer), fill = iqc_1panel_shading, alpha = 0.5) +    
+      annotate("rect", xmin = 50.5, xmax = 54.5, ymin = 0, ymax = (avg_y_max_iqc+iqc_1panel_buffer), fill = iqc_1panel_shading, alpha = 0.5) +      
+      annotate("rect", xmin = 58.5, xmax = 62.5, ymin = 0, ymax = (avg_y_max_iqc+iqc_1panel_buffer), fill = iqc_1panel_shading, alpha = 0.5) +      
+  
+  # Plotting System suitability and internal quality controls on separate panels using facet_grid()
+      geom_line(data=(fig6_tibble_4pep %>%
+                      filter(Group == "System Suitability")),
+                      aes(x=FigureOrder,
+                          y=as.numeric(Total.Area.Fragment),
+                          colour=Peptide.Sequence,
+                          group=interaction(PlotGrouping, Peptide.Sequence), size = 0.75, show.legend = FALSE)) +
+      geom_point(data=(fig6_tibble_4pep %>%
+                      filter(Group == "System Suitability")),
+                     aes(x=FigureOrder,
+                         y=as.numeric(Total.Area.Fragment),
+                         colour=Peptide.Sequence,
+                         shape=Group,
+                         group=interaction(PlotGrouping, Peptide.Sequence), size = 5, show.legend = FALSE)) +
+      scale_color_manual(values=fig6_ss, breaks = c("NGFILDGFPR", "GISNEGQNASIK", "GLILVGGYGTR", "SFANQPLEVVYSK")) +
+      new_scale_colour() +
+      new_scale_fill() +
+      new_scale("colour") +
+    
+      geom_line(data=(fig6_tibble_4pep %>%
+                      filter(Group == "Internal QC")),
+                      aes(x=FigureOrder,
+                          y=as.numeric(Total.Area.Fragment),
+                          colour=Peptide.Sequence,
+                          group=interaction(PlotGrouping, Peptide.Sequence), size = 0.75, show.legend = FALSE)) +
+      geom_point(data=(fig6_tibble_4pep %>%
+                      filter(Group == "Internal QC")),
+                      aes(x=FigureOrder,
+                          y=as.numeric(Total.Area.Fragment),
+                          colour=Peptide.Sequence,
+                          shape=Group,
+                          group=interaction(PlotGrouping, Peptide.Sequence), size = 5, show.legend = FALSE)) +
+      scale_color_manual(values=fig6_iqc, breaks = c("NGFILDGFPR", "GISNEGQNASIK", "GLILVGGYGTR", "SFANQPLEVVYSK")) + 
+
+      geom_rect(data = annotations, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, group = Group), fill = box_colors, inherit.aes = FALSE, alpha = 1, color = "azure3", show.legend = FALSE) +
+  
+      # Annotating separation between runs.
+      annotate("segment", x = c(17.5, 25.5, 41.5), xend = c(17.5, 25.5, 41.5), y = c(0, 0, 0), yend = c((avg_y_max_iqc+iqc_1panel_buffer), (avg_y_max_iqc+iqc_1panel_buffer), (avg_y_max_iqc+iqc_1panel_buffer)), linetype="dashed", colour = "gray15", linewidth=1, alpha=0.4, show.legend = FALSE)+
+
+  # Annotating separation between runs.  
+      annotate("rect", xmin = 34.5, xmax = 35.5, ymin = 0, ymax = (avg_y_max_iqc+iqc_1panel_buffer), fill = "bisque", alpha = 0.4) +
+      annotate("rect", xmin = 55.5, xmax = 56.5, ymin = 0, ymax = (avg_y_max_iqc+iqc_1panel_buffer), fill = "bisque", alpha = 0.4) +
+      annotate("text", x = 35, y = 3.2E09, label=paste0('†'), colour = "black", size=10) +
+      annotate("text", x = 56, y = 3.2E09, label=paste0('‡'), colour = "black", size=10) +
+
+      geom_text(data = annotations, aes(x = x_text, y = y_text, label = label, group = Group), hjust = 0, vjust = 0, inherit.aes = FALSE, size = 8, show.legend = FALSE) +
+
+    
+    # scale_color_manual(values=IQC_Blue_Avg) +
+    scale_x_discrete(limits = fig6_tibble_4pep$FigureOrder,  labels = fig6_tibble_4pep$Abbreviation) +
+  # Aesthetic and theme changes for the plot
+      theme_minimal()+
+      theme(panel.grid.major.x = element_blank(),
+            panel.grid.major.y = element_line(color="gray15"),
+            panel.grid.minor.y = element_line(color="azure3"),
+            axis.title.x=element_text(size=23),
+            axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size=21, color = "black", margin = margin(t = 0, r = 0, b = 0, l = 0)),
+            axis.text.y = element_text(color = "black", size=21),
+            legend.position = "bottom",
+            legend.spacing.x = unit(0.1, "in"),  
+            legend.key.size = unit(0.5, "in"),
+            legend.title=element_blank(),
+            legend.text=element_text(size = 18),
+            axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0), size=23),
+            plot.caption = element_text(color = "black", size = 20, hjust = 0))+
+      geom_hline(yintercept=0, linetype="solid", color = "black", linewidth=0.5) +
+      ylab(yaxval) +
+      xlab(xaxval) +
+  coord_cartesian(xlim=c(1,avg_x_max),
+                  ylim = c(0, (avg_y_max_iqc+0.2e09)),
+                  clip = 'off') +
+
+  # Adding note about run breaks
+      labs(caption = paste0("† 73 runs\n‡ 14 runs")) +
+      guides(size="none") +    
+      guides(shape = guide_legend(override.aes = list(size = 8))) +
+      guides(color = guide_legend(override.aes = list(size = 4)))
+      )
+
+```
+
+<br/><br/>
+
+```{r figure6_plot, fig.show='hide', results = "hold", collapse = TRUE}
+
+fig6 <- (figure6a / figure6b + plot_layout(heights = c(1,4)) + plot_annotation(tag_levels = 'A') & theme(plot.tag = element_text(size = 35)))
+
+ggsave(file = paste("output\\figures\\",basename,filenamebase,"Figure6.svg", sep=""), plot=fig6, width=22, height=(11+2.441))  
+  
+```
+
+<br/><br/>
+
+```{r figure6_printed, fig.dim = c(22,13.441), results = "hold", collapse = TRUE}
+# Print Figure 6
+  fig6
+
+```
+
+<br/><br/>
+
+
+## Fig. S2 Settings
+
+Setting up shared settings for Figure 6 panels.
+
+<br/><br/>
+
+```{r figS2b_annotations, results = "hold", collapse = TRUE}
 # Setting up a data frame containing numeric positioning and label information to differentiate between instrument batches.
 
 box_bottombuffer <- 0.2e09
@@ -2423,14 +2596,30 @@ box_colors <- c("#FCFAC7","#CFE0FC","#F1D0F2", "azure3","#FFFFFF","#FFFFFF","#FF
 
 <br/><br/>
 
-Plotting Figure 6B with annotations.
+## Figure S2
+
+<br/><br/>
+
+**Figure S2A** was shared with Figure 6, so S2A is equivalent to 6A.
+
+<br/><br/>
+
+**Figure S2B**
+
+Total area fragment of PRTC peptides in SS and IQC runs used to plot intensity of 8 PRTC peptides in (Supplementary) Figure S2B.
+
+Setting up a dataframe containing annotations to put together the final figure.
+
+<br/><br/>
+
+Plotting Figure S2B with annotations.
 
 $~$
 
-```{r fig6b_plot, fig.show='hide', results = "hold", collapse = TRUE}
+```{r figsS2b_plot, fig.show='hide', results = "hold", collapse = TRUE}
 
 # Generating Figure 6. Plotting system suitability and sample internal QCs
-figure6b <- (ggplot(data=fig6_tibble_plotting, aes(x=reorder(Abbreviation,FigureOrder), colour=Peptide.Sequence, group=interaction(PlotGrouping, Peptide.Sequence))) +
+figureS2b <- (ggplot(data=fig6_s2_tibble_plotting, aes(x=reorder(Abbreviation,FigureOrder), colour=Peptide.Sequence, group=interaction(PlotGrouping, Peptide.Sequence))) +
                 
   # Plotting System suitability and internal quality controls on separate panels using facet_grid()
       geom_line(aes(y=as.numeric(Total.Area.Fragment)), size = 1.5)+
@@ -2439,7 +2628,7 @@ figure6b <- (ggplot(data=fig6_tibble_plotting, aes(x=reorder(Abbreviation,Figure
 
     
   # Annotating separation between runs.
-      annotate("segment", x = c(17.5, 25.5, 41.5), xend = c(17.5, 25.5, 41.5), y = c(0, 0, 0), yend = c(avg_y_max_iqc, avg_y_max_iqc, avg_y_max_iqc), linetype="dashed", colour = "darkgray", linewidth=1, alpha=0.4)+
+      annotate("segment", x = c(17.5, 25.5, 41.5), xend = c(17.5, 25.5, 41.5), y = c(0, 0, 0), yend = c(avg_y_max_iqc, avg_y_max_iqc, avg_y_max_iqc), linetype="dashed", colour = "gray15", linewidth=1, alpha=0.4)+
 
   # Annotating separation between runs.  
       annotate("rect", xmin = 34.5, xmax = 35.5, ymin = 0, ymax = (avg_y_max_iqc-0.075e9), fill = "azure3", alpha = 0.4) +
@@ -2448,7 +2637,7 @@ figure6b <- (ggplot(data=fig6_tibble_plotting, aes(x=reorder(Abbreviation,Figure
       annotate("text", x = "‡", y = 2.5E09, label=paste0('‡'), colour = "black", size=10)+
 
     
-      geom_rect(data = annotations, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, group = Group), fill = box_colors, inherit.aes = FALSE, alpha = 1, color = "azure4") +
+      geom_rect(data = annotations, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, group = Group), fill = box_colors, inherit.aes = FALSE, alpha = 1, color = "azure3") +
     
       geom_text(data = annotations, aes(x = x_text, y = y_text, label = label, group = Group), hjust = 0, vjust = 0, inherit.aes = FALSE, size = 8) +
 
@@ -2456,7 +2645,7 @@ figure6b <- (ggplot(data=fig6_tibble_plotting, aes(x=reorder(Abbreviation,Figure
       theme_minimal()+
       theme(plot.margin = margin(0, 0, 0, 0, "in"),  # t, r, b, l 
             panel.grid.major.x = element_blank(),
-            panel.grid.major.y = element_line(color="azure3"),
+            panel.grid.major.y = element_line(color="gray15"),
             panel.grid.minor.y = element_line(color="azure3"),
             axis.title=element_text(size=17),
             axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size=16, color = "black"),
@@ -2485,24 +2674,23 @@ figure6b <- (ggplot(data=fig6_tibble_plotting, aes(x=reorder(Abbreviation,Figure
 
 <br/><br/>
 
-**Figure 6**
+Assembling Supplementary Figure S2.
 
-Combining the maintenance timeline in Figure 6A and the TAF of PRTC peptides in Figure 6B to generate the final annotated Figure 6.
+<br/><br/>
 
-$~$
+```{r figureS2_plot, fig.show='hide', results = "hold", collapse = TRUE}
 
-```{r}
+figS2 <- (figure6a / figureS2b + plot_layout(heights = c(1,4)) + plot_annotation(tag_levels = 'A') & theme(plot.tag = element_text(size = 35)))
 
-fig6 <- (figure6a / figure6b + plot_layout(heights = c(1,4)) + plot_annotation(tag_levels = 'A') & theme(plot.tag = element_text(size = 35)))
-
-ggsave(file = paste("output\\figures\\",basename,filenamebase,"Figure6.svg", sep=""), plot=fig6, width=22, height=(11+2.441))  
+ggsave(file = paste("output\\figures\\",basename,filenamebase,"FigureS2.svg", sep=""), plot=figS2, width=22, height=(11+2.441))  
   
 ```
 
 <br/><br/>
 
-```{r figure6_printed, fig.dim = c(22,13.441), results = "hold", collapse = TRUE}
-# Print Figure 6
-  fig6
+```{r figureS2_printed, fig.dim = c(22,13.441), results = "hold", collapse = TRUE}
+# Print Figure S2
+  figS2
 
 ```
+
