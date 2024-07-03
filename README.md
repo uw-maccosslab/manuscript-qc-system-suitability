@@ -1,6 +1,8 @@
 # MacCoss Lab QC for sample preparation, system suitability, and quantitative results.
 
-This repository contains most of the input files and the analyses described in the manuscript **"A framework for quality control in quantitative proteomics"**, which is currently located on bioRxiv under the DOI [10.1101/2024.04.12.589318](https://doi.org/10.1101/2024.04.12.589318). Any files not located here are freely and openly accessible on [Panorama Public](https://panoramaweb.org/maccoss-sample-qc-system-suitability.url).
+This repository contains most of the input files and the analyses described in the manuscript **"A framework for quality control in quantitative proteomics"**, which is currently located on bioRxiv under the DOI [10.1101/2024.04.12.589318](https://doi.org/10.1101/2024.04.12.589318).
+
+Please note that there are 5 input files *not* availbe on GitHub as they are >25 MB, which are freely and openly accessible on [Panorama Public](https://panoramaweb.org/maccoss-sample-qc-system-suitability.url).
 
 Data was processed manually or with Nextflow workflows using Skyline and Limelight. The results were exported using the Skyline document grid or from Limelight. Downstream analysis and figure generation were perfomed using Skyline, Panorama, R scripts, and Inkscape.
 
@@ -71,23 +73,23 @@ Input files 25 MB or less for scripts are located in the **input** folder. All o
 
 #### ***Skyline Document:*** figure3_PRM_system_suitability.sky.zip
 * **Figure3_PRM_metadata.csv:** Metadata of PRM system suitability runs shown in Figure 3.
-* **Figure3_PRM_PeakArea_RetTime_Chromatogram_Export.csv:** Peak areas, retention times, and chromatograhy data from PRM system suitability runs shown in Figure 3. Located only on Panorama.
+* **Figure3_PRM_PeakArea_RetTime_Chromatogram_Export.csv:** Peak areas, retention times, and chromatograhy data from PRM system suitability runs shown in Figure 3. _Located only on Panorama._
 * **Figure3_PRM_MS1area_idotp.csv:** Isotope dot products of PRM system suitability runs shown in Figure 3.
 
 #### ***Skyline Document:*** figure4_DIA_samples.sky.zip
-* **Figure4_DIA_PeakArea_RetTime_Chromatogram_Export.csv:** Peak areas, retention times, and chromatography data from DIA sample runs runs shown in Figure 4 and Supplementary Figure 1. Located only on Panorama.
+* **Figure4_DIA_PeakArea_RetTime_Chromatogram_Export.csv:** Peak areas, retention times, and chromatography data from DIA sample runs runs shown in Figure 4 and Supplementary Figure 1. _Located only on Panorama._
 * **Figure4_DIA_metadata.csv:** Metadata of DIA samples runs shown in Figure 4 and Supplementary Figure 1.
 
 #### ***Skyline Document:*** figure4_PRM_system_suitability.sky.zip
-* **Figure4_PRM_PeakArea_RetTime_Chromatogram_Export.csv:** Peak areas, retention times, and chromatography data from PRM system suitability runs runs shown in Figure 4 and Supplementary Figure 1. Located only on Panorama.
+* **Figure4_PRM_PeakArea_RetTime_Chromatogram_Export.csv:** Peak areas, retention times, and chromatography data from PRM system suitability runs runs shown in Figure 4 and Supplementary Figure 1. _Located only on Panorama._
 * **Figure4_PRM_metadata.csv:** Metadata of PRM system suitability runs shown in Figure 4 and Supplementary Figure 1.
 
 #### ***Skyline Document:*** figure5_DIA_samples.sky.zip
-* **Figure5_DIA_PeakArea_RetTime_Chromatogram_Export.csv:**  Peak areas, retention times, and chromatography data from DIA sample runs runs shown in Figure 5. Located only on Panorama.
+* **Figure5_DIA_PeakArea_RetTime_Chromatogram_Export.csv:**  Peak areas, retention times, and chromatography data from DIA sample runs runs shown in Figure 5. _Located only on Panorama._
 * **Figure5_DIA_metadata.csv:** Metadata of DIA samples runs shown in Figure 5.
 
 #### ***Skyline Document:*** figure5_PRM_system_suitability.sky.zip
-* **Figure5_PRM_PeakArea_RetTime_Chromatogram_Export.csv:** Peak areas, retention times, and chromatography data from PRM system suitability runs runs shown in Figure 5. Located only on Panorama.
+* **Figure5_PRM_PeakArea_RetTime_Chromatogram_Export.csv:** Peak areas, retention times, and chromatography data from PRM system suitability runs runs shown in Figure 5. _Located only on Panorama._
 * **Figure5_PRM_metadata.csv:** Metadata of PRM system suitability runs shown in Figure 5.
 
 #### ***Skyline Document:*** figure6_DIA_samples.sky.zip
@@ -110,6 +112,8 @@ Input files 25 MB or less for scripts are located in the **input** folder. All o
 * Figure3_PRM_PeakArea_RetTime_Chromatogram_Export.csv
 
 * Figure4_DIA_PeakArea_RetTime_Chromatogram_Export.csv
+
+* Figure4_PRM_PeakArea_RetTime_Chromatogram_Export.csv
 
 * Figure5_DIA_PeakArea_RetTime_Chromatogram_Export.csv
 
