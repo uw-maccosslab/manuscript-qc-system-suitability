@@ -13,8 +13,6 @@ $~$
 
 * **bin:** Contains scripts used to generate figures
 
-* **figs:** Contains copies of figures
-
 * **input:** Contains files used as input for the scripts in the bin folder
 
 * **miscellaneous:** Contains additional, miscellaneous files.
