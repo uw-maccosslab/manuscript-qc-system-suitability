@@ -13,8 +13,6 @@ $~$
 
 * **bin:** Contains scripts used to generate figures
 
-* **figs:** Contains copies of figures
-
 * **input:** Contains files used as input for the scripts in the bin folder
 
 * **miscellaneous:** Contains additional, miscellaneous files.
@@ -49,9 +47,9 @@ Scripts are located in the **bin** folder.
   - Figure 4
   - Figure 5
   - Figure 6
-  - Supplementary Figure 1
-  - Supplementary Figure 2
-  - 
+  - Supplementary Figure S1
+  - Supplementary Figure S2
+    
 * **bin/data** subfolder contains scripts needed to process data to generate Figure 7 using two additional scripts found in **figs** subfolder
 
   - functions.r
@@ -94,18 +92,18 @@ Input files 25 MB or less for scripts are located in the **input** folder. All o
 * **Figure5_PRM_metadata.csv:** Metadata of PRM system suitability runs shown in Figure 5.
 
 #### ***Skyline Document:*** figure6_DIA_samples.sky.zip
-* **Figure6_DIA_LongForm_Peptide_TAF.csv:** Total area fragment of DIA sample runs shown in Figure 6.
-* **Figure6_DIA_metadata.csv:** Metadata of DIA samples runs shown in Figure 6.
+* **Figure6_DIA_LongForm_Peptide_TAF.csv:** Total area fragment of DIA sample runs shown in Figure 6 and Supplementary Figure 2.
+* **Figure6_DIA_metadata.csv:** Metadata of DIA samples runs shown in Figure 6 and Supplementary Figure 2.
 
 #### ***Skyline Document:*** figure6_PRM_system_suitability.sky.zip
-* **Figure6_PRM_LongForm_Peptide_TAF.csv:** Total area fragment of PRM system suitability runs shown in Figure 6.
-* **Figure6_PRM_metadata.csv:** Metadata of PRM system suitability runs shown in Figure 6.
+* **Figure6_PRM_LongForm_Peptide_TAF.csv:** Total area fragment of PRM system suitability runs shown in Figure 6 and Supplementary Figure 2.
+* **Figure6_PRM_metadata.csv:** Metadata of PRM system suitability runs shown in Figure 6 and Supplementary Figure 2.
 
 #### ***Limelight Project:*** [MacCoss QC Paper 2024 - Project 131](https://limelight.yeastrc.org/limelight/d/pg/project/131).
 * **Figure3_DDA_Limelight_PSMs.txt:** Peptides and PSMs identified using Comet and Percolator.
 
 #### ***Additional input files:*** 
-* **Figure6_timeline_format.csv:** Organizer .csv to set-up and label the maintenance timeline in Figure 6A.
+* **Figure6_timeline_format.csv:** Organizer .csv to set-up and label the maintenance timeline in Figure 6A and Supplementary Figure 2A.
 * **Figure6_Run_Organizer.csv:** Organizer .csv to set-up and label Figure 6B.
 
 #### ***Please note some input files are only located on Panorama:*** [Panorama Public](https://panoramaweb.org/maccoss-sample-qc-system-suitability.url) figure subfolders contain script input files that are larger than 25 MB.
@@ -123,7 +121,7 @@ Input files 25 MB or less for scripts are located in the **input** folder. All o
 
 ### functions.r input files
 
-* None. Contains functions used in **interim_dat.r**, **processed_dat.r**, **plot_7a.r**, and **plot_7b.**r
+* None. Contains functions used in **interim_dat.r**, **processed_dat.r**, **plot_7a.r**, and **plot_7b.r**.
 
 
 ### interim_dat.r input files
@@ -198,6 +196,7 @@ Panels generated in "plot_7a.r" and "plot_7b.r".
   - **7B:** (Left) Plotting the CV vs Log2(Median Abundance) across all batches to assess the effects of normalization and batch correction on peptide and protein CVs in the inter-batch external QC samples, (Right) Plotting Frequency distribution of the protein and peptide CVs across all batches to assess the effects of normalization and batch correction on peptide and protein CVs in the inter-batch external QC samples.
 
 * **Supplementary Figure S1:**
+Panels generated in "maccoss_qc_figures_3_4_5_6_S1_S2.Rmd".
   - **S1A:** Exported Skyline MS2 peak areas of yeast enolase peptide AADALLLK from samples in running order.
   - **S1B:** Re-print of exported Skyline MS2 peak areas of yeast enolase peptide VNQIGTLSESIK from samples in running order.
   - **S1C:** Exported Skyline MS2 peak areas of PRTC peptide AADALLLK from samples grouped by sample preparation condition.
@@ -207,7 +206,7 @@ Panels generated in "plot_7a.r" and "plot_7b.r".
   - **S1G:** Exported Skyline MS2 peak areas of PRTC peptide NGFILDGFPR from samples grouped by sample preparation condition.
   - **S1H:** Exported Skyline MS2 peak areas of PRTC peptide TASEFDSAIAQDK from samples grouped by sample preparation condition.
  
-* * **Supplementary Figure S2:**
+* **Supplementary Figure S2:**
 Panels generated in "maccoss_qc_figures_3_4_5_6_S1_S2.Rmd".
-  - **6A:** Maintenance timeline of Orbitrap Fusion Lumos Tribrid.
-  - **6B:** Total Area Fragment of 8 individual PRTC peptides in system suitability and sample runs across 4 batches. Peptides from 2 different run types are split into two panels with y-axes on the same scale.
+  - **S2A:** Maintenance timeline of Orbitrap Fusion Lumos Tribrid.
+  - **S2B:** Total Area Fragment of 8 individual PRTC peptides in system suitability and sample runs across 4 batches. Peptides from 2 different run types are split into two panels with y-axes on the same scale.
