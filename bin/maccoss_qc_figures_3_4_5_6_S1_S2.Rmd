@@ -1482,7 +1482,7 @@ figS4_bottom <- fig4_eno_group(dataframe = fig4_pa_rt_chrom_grouped_ms2,
 # Putting the panels together
 fig4_patch <- fig4_top / figS4_bottom
                  
-fig4 <- fig4_patch + plot_annotation(tag_levels = 'A') & theme(plot.tag = element_text(size = 6))
+fig4 <- fig4_patch + plot_annotation(tag_levels = 'A') & theme(plot.tag = element_text(size = 34))
 
 # Output Figure 4 as a .svg file. 
 ggsave(file = paste("output\\figures\\",basename,filenamebase,"Figure4.svg", sep=""), plot=fig4, width=15, height=15) 
