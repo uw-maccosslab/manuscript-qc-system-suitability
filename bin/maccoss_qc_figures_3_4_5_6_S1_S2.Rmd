@@ -666,6 +666,10 @@ Plot_fig3_PRM_prtc_taf
 
 * The x-axis label "Time (Minutes)" label was moved to the right into x position 700
 
+* Moved plot title up 10 pixels to y position 33.655
+
+* Thicken timeline label borders and connecting lines from 2.130 pixels to 4 pixels
+
 
 <br/><br/>
 
@@ -690,6 +694,12 @@ cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
 **Figure 3A**
 
 Generating a ggplot object of a timeline of significant maintenance.
+
+To finish Figure 3 in Inkscape:
+
+  - Move plot title up 10 pixels to y position 28.655
+  
+  - Thicken timeline label borders from 0.550 pixels to 2 pixels
 
 $~$
 
@@ -1005,6 +1015,15 @@ $~$
 
 # Export Figure 3 as .svg file
   ggsave(file = paste("output\\figures\\",basename,filenamebase,"Figure3_partial.svg", sep=""), plot=fig3, width= 20, height=18.4) 
+  
+    
+##############################################################################################################################
+##############################################################################################################################
+##
+##    To finish Figure 3 in Inkscape:
+##
+##    - Move plot title up 10 pixels to y position 28.655
+##    - Thicken timeline label borders from 0.550 pixels to 2 pixels
 
 ```
 
@@ -2163,7 +2182,7 @@ fig5 <- (fig5_yeno1_intensity + fig5_prtc_intensity + fig5_7_yeno1_combined + fi
 ##############################################################################################################################
 ##############################################################################################################################
 ##
-##    To finish figure, move "Replicate" x-axis labels to the center of panels C-D and E-F by moving
+##    To finish figure 5, move "Replicate" x-axis labels to the center of panels C-D and E-F by moving
 ##
 ##    - Label for panel C-D: Move to the right 130 pixels
 ##    - Label for panel #-F:Move to the right 130 pixels
@@ -2187,6 +2206,13 @@ fig5 <- (fig5_yeno1_intensity + fig5_prtc_intensity + fig5_7_yeno1_combined + fi
 
 <br/><br/>
 
+To finish Figure 6 in Inkscape:
+
+  - Move plot titled up 10 pixels to y position 13.538
+  
+  - Move x-axis title down 10 pixels to y position 841.675
+  
+  - Thicken timeline label borders and connecting lines from 0.530 pixels to 2 pixels
 
 ## Tidying
 
@@ -2552,6 +2578,15 @@ fig6 <- (figure6a / figure6b + plot_layout(heights = c(1,4)) + plot_annotation(t
 
 ggsave(file = paste("output\\figures\\",basename,filenamebase,"Figure6.svg", sep=""), plot=fig6, width=22, height=(11+2.441))  
   
+##############################################################################################################################
+##############################################################################################################################
+##
+##    To finish Figure 6 in Inkscape:
+##
+##    - Move plot titled up 10 pixels to y position 13.538
+##    - Move x-axis title down 10 pixels to y position 841.675
+##    - Thicken timeline label borders and connecting lines from 0.530 pixels to 2 pixels
+
 ```
 
 <br/><br/>
